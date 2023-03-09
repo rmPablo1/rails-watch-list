@@ -1,0 +1,34 @@
+#card-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+#card-movie{
+  background-image: asset-url("images.png");
+  background-size: contain;
+  height: 20vh;
+  width:100%;
+}
+
+#title{
+  position:relative;
+  color: white;
+  text-align: center;
+  top:30%;
+  font-size: 3rem;
+  text-shadow: 0px 0px 4px rgba(0,0,0,1);
+}
+
+#card-container-area{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+
+#image-from-card{
+  object-fit: contain;
+}

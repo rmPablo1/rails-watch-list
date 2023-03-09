@@ -1,0 +1,22 @@
+<div class="banner" >
+  <div class="container">
+    <h1><%= @list.name %> movies</h1>
+  </div>
+</div>
+<div id="card-container-area">
+  <% if !@bookmarks.empty? %>
+      <% @bookmarks.each do |bookmark| %>
+          <div class="card">
+            <%= image_tag("card_image", class: "card-image-top object-fit-fill", size: "530x400",) %>
+
+            <p><%= bookmark.movie.title %> <%= bookmark.movie.rating %></i>
+            <p>
+            <p><%= bookmark.comment %> <%= link_to(bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}) do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %></p>
+          </div>
+      <% end %>
+  <% else %>
+    <p>No bookmark found!</p>
+  <% end %>
+</div>
