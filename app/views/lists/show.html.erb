@@ -3,20 +3,57 @@
     <h1><%= @list.name %> movies</h1>
   </div>
 </div>
-<div id="card-container-area">
-  <% if !@bookmarks.empty? %>
-      <% @bookmarks.each do |bookmark| %>
-          <div class="card">
-            <%= image_tag("card_image", class: "card-image-top object-fit-fill", size: "530x400",) %>
-
-            <p><%= bookmark.movie.title %> <%= bookmark.movie.rating %></i>
-            <p>
-            <p><%= bookmark.comment %> <%= link_to(bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}) do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %></p>
-          </div>
+<div class="row">
+  <div id="small-container" data-controller="toggle-visible">
+    <div class="d-flex justify-content-end mt-3" >
+      <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
+    </div>
+    <div class="d-none" data-toggle-visible-target="form">
+        <%= render "/bookmarks/form", list: @list, bookmark: @bookmark %>
+    </div>
+    <div id="card-container-area">
+      <% if !@bookmarks.empty? %>
+          <% @bookmarks.each do |bookmark| %>
+              <div class="card mt-3 align-items-stretch" >
+                <%= image_tag("card_image", class: "card-image-top object-fit-cover") %>
+                <div class="card-body">
+                  <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
+                  <p class="card-text text-secondary"><%= bookmark.movie.overview %></p>
+                  <div class="d-flex justify-content-between">
+                    <p class=""><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
+                    <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      <% else %>
+        <p>No bookmark found!</p>
       <% end %>
-  <% else %>
-    <p>No bookmark found!</p>
-  <% end %>
+    </div>
+    <hr>
+    <!-- FIX THIS SECTION WHICH BELONGS TO REVIEWS -->
+    <div class="small-container">
+      <h3>Reviews</h3>
+      <div class="d-flex ">
+      <div class="d-flex justify-content-between">
+        <div class="">
+          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span> <span class="text-secondary f"><em>less than a minute ago</span></em></p>
+          <p class="fw-bold">Seems like an interesting list of movies! Will give it a go thanks</p>
+          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span> <span class="text-secondary f"><em>less than a minute ago</span></em></p>
+          <p class="fw-bold">Seems like an interesting list of movies! Will give it a go thanks</p>
+        </div>
+        <div class="w-50 bg-white p-3">
+          <form action="" class=" d-flex flex-column form">
+            <h3>Add your review</h3>
+            <label for="comment">Comment*</label>
+            <input type="text" name="comment" class="form-control">
+            <label for="Rating*">Review*</label>
+            <p><span class="text-secondary"><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span></p>
+            <input type="submit" class="btn btn-outline-success">
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
