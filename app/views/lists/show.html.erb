@@ -15,7 +15,7 @@
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
               <div class="card mt-3 align-items-stretch" >
-                <%= image_tag("card_image", class: "card-image-top object-fit-cover") %>
+                <%= image_tag("card_image.png", class: "card-image-top object-fit-cover") %>
                 <div class="card-body">
                   <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
                   <p class="card-text text-secondary"><%= bookmark.movie.overview %></p>
