@@ -12,6 +12,16 @@
   width:100%;
 }
 
+#card {
+  border: 1px solid #ccc;
+  height: 40%;
+  width: 40%;
+}
+
+#card img{
+  object-fit: cover;
+}
+
 #small-container{
   margin: auto;
   width: 60%;

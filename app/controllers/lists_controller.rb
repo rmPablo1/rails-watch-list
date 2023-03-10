@@ -4,7 +4,8 @@ class ListsController < ApplicationController
   end
 
   def show
-
+    @reviews = Review.where(list_id: params[:id]).order(created_at: :desc).first(3)
+    @review = Review.new
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
     @bookmarks = Bookmark.where(list_id: params[:id])

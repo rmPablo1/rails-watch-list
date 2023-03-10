@@ -23,8 +23,8 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card mt-3 align-items-stretch" >
-                <%= image_tag(bookmark.movie.poster_url, class: "card-image-top object-fit-cover") %>
+              <div id="card" >
+                <%= image_tag(bookmark.movie.poster_url) %>
                 <div class="card-body">
                   <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
                   <p class="card-text text-secondary"><%= bookmark.movie.overview %></p>
@@ -41,28 +41,21 @@
     </div>
     <hr>
     <!-- FIX THIS SECTION WHICH BELONGS TO REVIEWS -->
-    <div class="small-container">
-      <h3>Reviews</h3>
-      <div class="d-flex ">
-      <div class="d-flex justify-content-between">
-        <div class="">
-          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span> <span class="text-secondary f"><em>less than a minute ago</span></em></p>
-          <p class="fw-bold">Seems like an interesting list of movies! Will give it a go thanks</p>
-          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span> <span class="text-secondary f"><em>less than a minute ago</span></em></p>
-          <p class="fw-bold">Seems like an interesting list of movies! Will give it a go thanks</p>
-        </div>
-        <div class="w-50 bg-white p-3">
-          <form action="" class=" d-flex flex-column form">
-            <h3>Add your review</h3>
-            <label for="comment">Comment*</label>
-            <input type="text" name="comment" class="form-control">
-            <label for="Rating*">Review*</label>
-            <p><span class="text-secondary"><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span><span class="text-secondary"><i class="fa-solid fa-star"></i></span></p>
-            <input type="submit" class="btn btn-outline-success">
-          </form>
+  <div class="small-container">
+    <h3>Reviews</h3>
+        <% @reviews.each do |review|%>
+        <div class="flex-row justify-content-between">
+          <div>
+            <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span><span class="text-warning"><i class="fa-solid fa-star"></i></span> <span class="text-secondary f"><em><%=distance_of_time_in_words(review.created_at, Time.now) %> ago</span></em></p>
+            <p class="fw-bold"><%= review.comment %></p>
+            <hr>
           </div>
-        </div>
+          <% end %>
+          <div class="d-flex justify-content-center">
+            <div class="w-50 bg-white p-3">
+              <%= render "/reviews/forms", list: @list, review: @review %>
+            </div>
+          </div>
       </div>
     </div>
-  </div>
 </div>
