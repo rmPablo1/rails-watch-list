@@ -3,10 +3,13 @@
       <h1>Save any kind of movies</h1>
     </div>
   </div>
-<div class="container-xl col-12">
+<div class="container-xl col-12" data-controller="toggle-visible">
   <div class="container-fluid mt-5 ">
-    <h1 class="d-flex justify-content-between">My lists:<%= link_to("Create a movie list", new_list_path, class: "btn btn-success align-self-center") %></h1>
+    <h1 class="d-flex justify-content-between">My lists:<button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a list</button></h1>
   </div>
+  <div class="d-none" data-toggle-visible-target="form">
+        <%= render "form", list: @list%>
+    </div>
     <div id="card-container">
         <% @lists.each do |list| %>
           <%= link_to(list_path(list), class:"text-decoration-none") do %>

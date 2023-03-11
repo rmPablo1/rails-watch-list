@@ -14,7 +14,7 @@
 <% end %>
 <div class="row">
   <div id="small-container" data-controller="toggle-visible">
-    <div class="d-flex justify-content-end mt-3" >
+    <div class="d-flex justify-content-end mt-3 mb-3 " >
       <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
     </div>
     <div class="d-none" data-toggle-visible-target="form">
@@ -23,12 +23,14 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div id="card" >
-                <%= image_tag(bookmark.movie.poster_url) %>
-                <div class="card-body">
-                  <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
-                  <p class="card-text text-secondary"><%= bookmark.movie.overview %></p>
-                  <div class="d-flex justify-content-between">
+              <div class="card d-flex justify-content-between" >
+                <%= image_tag(bookmark.movie.poster_url, id:"image-from-card") %>
+                <div class="d-flex flex-column  card-body">
+                  <div class="text-wrap mb-1 overflow-hidden" id="overflow-hide">
+                    <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
+                    <p class=" text-secondary"><%= bookmark.movie.overview %></p>
+                  </div>
+                  <div class="d-flex justify-content-between overflow-hidden">
                     <p class=""><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
                     <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
                 </div>
@@ -40,7 +42,6 @@
       <% end %>
     </div>
     <hr>
-    <!-- FIX THIS SECTION WHICH BELONGS TO REVIEWS -->
   <div class="small-container">
     <h3>Reviews</h3>
         <% @reviews.each do |review|%>
