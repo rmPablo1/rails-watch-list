@@ -4,8 +4,17 @@
 
 import { application } from "./application"
 
+import FormSubmitController from "./form_submit_controller"
+application.register("form-submit", FormSubmitController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)
+
 import ToggleVisibleController from "./toggle_visible_controller"
 application.register("toggle-visible", ToggleVisibleController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)

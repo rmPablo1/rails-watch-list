@@ -1,9 +1,14 @@
 .banner {
-  background-image: asset-url("banner.png");
+  background-image: asset-url("cinema.png");
   background-size: cover;
   background-position: center;
   padding: 150px 0;
-  height: 70vh;
+  height: 50vh;
+}
+
+#text-shadow{
+  color: white;
+  text-shadow: 3px 3px black;
 }
 
 .banner h1 {
