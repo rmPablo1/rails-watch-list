@@ -7,6 +7,9 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
   </head>
 
   <body>
@@ -20,5 +23,8 @@
       </form>
     </nav>
     <%= yield %>
+    <script>
+    AOS.init();
+  </script>
   </body>
 </html>

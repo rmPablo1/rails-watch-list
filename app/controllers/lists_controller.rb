@@ -9,7 +9,7 @@ class ListsController < ApplicationController
     @review = Review.new
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.where(list_id: params[:id]).last(4)
+    @bookmarks = Bookmark.where(list_id: params[:id])
   end
 
   def new
