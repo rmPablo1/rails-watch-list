@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AnimationJsController from "./animation_js_controller"
+application.register("animation-js", AnimationJsController)
+
 import FormSubmitController from "./form_submit_controller"
 application.register("form-submit", FormSubmitController)
 

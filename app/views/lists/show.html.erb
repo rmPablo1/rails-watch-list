@@ -2,13 +2,13 @@
   <div class="banner" style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(@list.background_image.key,
       width: 400, height: 300, crop: :fill) %>')">
     <div class="container">
-      <h1><%= @list.name %> movies</h1>
+      <h1><%= @list.name %></h1>
     </div>
   </div>
 <% else %>
   <div class="banner" >
     <div class="container">
-      <h1><%= @list.name %> movies</h1>
+      <h1><%= @list.name %></h1>
     </div>
   </div>
 <% end %>
@@ -23,7 +23,7 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card d-flex justify-content-between" >
+              <div class="card d-flex justify-content-between" data-aos="fade-right" >
                 <%= image_tag(bookmark.movie.poster_url, id:"image-from-card") %>
                 <div class="flex-column  card-body">
                   <div class="text-wrap mb-1 overflow-hidden" id="overflow-hide">
@@ -42,11 +42,11 @@
       <% end %>
     </div>
     <hr>
-  <div class="small-container">
+  <div class="small-container"  data-aos="zoom-in">
     <h3>Reviews</h3>
         <% @reviews.each do |review|%>
         <div class="flex-row justify-content-between">
-          <div>
+          <div >
             <p><% rating = review.rating.to_i %> <!-- assume rating is 4 out of 5 -->
               <% 5.times do |i| %>
                 <% if i < rating %>
@@ -61,7 +61,7 @@
           </div>
           <% end %>
           <div class="d-flex justify-content-center">
-            <div class="w-50 bg-white p-3">
+            <div class="bg-white p-3" id="form">
               <%= render "/reviews/forms", list: @list, review: @review %>
             </div>
           </div>

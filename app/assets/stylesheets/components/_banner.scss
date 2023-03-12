@@ -1,4 +1,7 @@
 .banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: asset-url("cinema.png");
   background-size: cover;
   background-position: center;

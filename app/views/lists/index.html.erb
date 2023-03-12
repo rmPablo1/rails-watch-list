@@ -1,4 +1,4 @@
-<div class="banner"  >
+<div class="banner">
     <div class="container">
       <h1><span id="text-shadow" data-controller="typed-js"></span></h1>
     </div>
@@ -10,11 +10,11 @@
   <div class="d-none" data-toggle-visible-target="form">
         <%= render "form", list: @list%>
     </div>
-    <div id="card-container">
+    <div id="card-container" >
         <% @lists.each do |list| %>
           <%= link_to(list_path(list), class:"text-decoration-none") do %>
             <% if list.background_image.attached? %>
-            <div id="card-movie" style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(list.background_image.key,
+            <div id="card-movie"style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(list.background_image.key,
               width: 400, height: 300, crop: :fill) %>')">
               <p id="title"><%= list.name %></p>
             </div>
@@ -23,7 +23,6 @@
               <p id="title"><%= list.name %></p>
             </div>
             <% end %>
-
           <% end %>
       <% end %>
   </div>
