@@ -14,7 +14,12 @@
 <% end %>
 <div class="row">
   <div id="small-container" data-controller="toggle-visible">
-    <div class="d-flex justify-content-end mt-3 mb-3 " >
+    <div class="d-flex justify-content-between mt-3 mb-3 " >
+      <% if @list.user == current_user %>
+        <p class="fs-3">My bookmarks</p>
+      <% else %>
+        <p class="fs-3">The bookmarks from <%= @list.user.email  %></p>
+      <% end %>
       <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
     </div>
     <div class="d-none" data-toggle-visible-target="form">
@@ -23,7 +28,7 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card d-flex justify-content-between" data-aos="fade-right" >
+              <div class="card d-flex justify-content-between shadow" data-aos="fade-right" >
                 <%= image_tag(bookmark.movie.poster_url, id:"image-from-card") %>
                 <div class="flex-column  card-body">
                   <div class="text-wrap mb-1 overflow-hidden" id="overflow-hide">
@@ -44,6 +49,9 @@
     <hr>
   <div class="small-container"  data-aos="zoom-in">
     <h3>Reviews</h3>
+    <% if @reviews.empty? %>
+      <p class="ps-3 text-secondary">No reviews yet. Write the first review to this list!</p>
+    <% else %>
         <% @reviews.each do |review|%>
         <div class="flex-row justify-content-between">
           <div >
@@ -60,8 +68,9 @@
             <hr>
           </div>
           <% end %>
+    <% end %>
           <div class="d-flex justify-content-center">
-            <div class="bg-white p-3" id="form">
+            <div class="bg-white p-3  shadow" id="form">
               <%= render "/reviews/forms", list: @list, review: @review %>
             </div>
           </div>

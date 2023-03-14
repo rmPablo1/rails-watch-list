@@ -1,9 +1,14 @@
 class ListsController < ApplicationController
-  def index
-    @lists = List.all
+  skip_before_action :authenticate_user!, only: :home
+
+  def home
+    if user_signed_in?
+      @lists = List.all.where(user: current_user)
+    else
+      @lists = List.all
+    end
     @list = List.new
   end
-
   def show
     @reviews = Review.where(list_id: params[:id]).order(created_at: :desc).first(3)
     @review = Review.new
@@ -18,6 +23,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(set_params)
+    @list.user = current_user
     if @list.save
       redirect_to list_path(@list)
     else
