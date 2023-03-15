@@ -20,7 +20,9 @@
       <% else %>
         <p class="fs-3">The bookmarks from <%= @list.user.email  %></p>
       <% end %>
-      <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
+      <% if @list.user == current_user %>
+        <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
+      <% end %>
     </div>
     <div class="d-none" data-toggle-visible-target="form">
         <%= render "/bookmarks/form", list: @list, bookmark: @bookmark %>
@@ -37,12 +39,14 @@
                   </div>
                   <div class="d-flex justify-content-between overflow-hidden">
                     <p class=""><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
+                    <% if policy(bookmark).destroy? %>
                     <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
+                    <% end %>
                 </div>
               </div>
             </div>
           <% end %>
-      <% else %>
+      <% else  %>
         <p>No bookmark found!</p>
       <% end %>
     </div>
@@ -62,9 +66,12 @@
                 <% else %>
                   <i class="fa-regular fa-star"></i> <!-- unfilled star for ratings less than or equal to i -->
                 <% end %>
-              <% end %><span class="text-secondary f"><em><%=distance_of_time_in_words(review.created_at, Time.now) %> ago</span></em>
+              <% end %>
+              <span class="text-secondary f"><em><%=distance_of_time_in_words(review.created_at, Time.now) %> ago</span> by <%= review.user.email %></em>
               </p>
-            <p class="fw-bold"><%= review.comment %></p>
+            <p class="fw-bold d-flex justify-content-between"><%= review.comment %> <% if policy(review).destroy? %>
+                    <%= link_to("delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
+                    <% end %></p>
             <hr>
           </div>
           <% end %>

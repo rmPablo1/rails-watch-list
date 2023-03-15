@@ -30,6 +30,10 @@ gem "jbuilder"
 # Devise
 gem "devise"
 
+# Pundit
+
+gem "pundit"
+
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form"

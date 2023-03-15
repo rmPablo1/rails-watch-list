@@ -2,11 +2,7 @@ class ListsController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    if user_signed_in?
-      @lists = List.all.where(user: current_user)
-    else
-      @lists = List.all
-    end
+    @lists = policy_scope(List)
     @list = List.new
   end
   def show
@@ -15,19 +11,37 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @bookmark = Bookmark.new
     @bookmarks = Bookmark.where(list_id: params[:id])
+    authorize @list
   end
 
   def new
     @list = List.new
+    authorize @list
   end
 
   def create
     @list = List.new(set_params)
     @list.user = current_user
+    authorize @list
     if @list.save
       redirect_to list_path(@list)
     else
       render "index", status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @list = List.find(params[:id])
+    authorize @list
+  end
+
+  def update
+    @list = List.find(params[:id])
+    authorize @list
+    if @list.update(set_params)
+      redirect_to list_path(@list)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -2,6 +2,7 @@ class BookmarksController < ApplicationController
   def new
     @list = List.find(params[:list_id])
     @bookmark = Bookmark.new
+    authorize @bookmark
   end
 
   def create
@@ -9,6 +10,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(set_params)
     @list = List.find(params[:list_id])
     @bookmark.list = @list
+    authorize @bookmark
     if @bookmark.save
       redirect_to list_path(@list)
     else
@@ -16,8 +18,10 @@ class BookmarksController < ApplicationController
     end
   end
 
+
   def destroy
     @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
     @bookmark.destroy
     redirect_to list_path(@bookmark.list)
   end
