@@ -15,8 +15,10 @@
   <body>
     <%= render "/shared/navbar" %>
     <%= render "/shared/flashes" %>
+    <div style="min-height:100vh;" class="mb-5">
     <%= yield %>
-    <br>
+    </div>
+    <%= render "/shared/footer" %>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();

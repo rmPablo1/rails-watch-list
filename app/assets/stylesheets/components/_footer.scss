@@ -1,0 +1,28 @@
+#footer{
+  width: 100%;
+  color: white;
+  background-color: #171617;
+  align-items: center;
+  padding: 20px;
+
+}
+
+p {
+ text-align: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+
+.thing {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.fa-brands {
+  color: white;
+}
