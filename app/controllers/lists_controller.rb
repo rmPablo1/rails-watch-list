@@ -2,9 +2,20 @@ class ListsController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    @lists = policy_scope(List)
     @list = List.new
+    @sentence = ""
+    if params[:query].present?
+      @sentence = "The lists of #{params[:query]}"
+      sql_query = <<~SQL
+        users.username ILIKE :query
+      SQL
+      @lists = List.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @sentence = "All lists"
+      @lists = policy_scope(List)
+    end
   end
+
   def show
     @reviews = Review.where(list_id: params[:id]).order(created_at: :desc).first(3)
     @review = Review.new

@@ -6,13 +6,13 @@
 <div class="container-xl col-12" data-controller="toggle-visible">
   <div class="container-fluid mt-5 ">
     <% if user_signed_in? %>
-      <h1 class="d-flex justify-content-between"><%= @sentence %><%= render "shared/search_form" %><button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a list</button></h1>
+      <h1 class="d-flex justify-content-between">My lists: <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a list</button></h1>
     <% else %>
       <h2 class="d-flex justify-content-between">SIGN-UP or LOG-IN to start creating lists! <div><%= link_to("SIGN-UP", new_user_registration_path, class: "btn fs-5 btn-outline-success me-2" ) %><%= link_to("Login", new_user_session_path, class: "btn fs-5 btn-outline-success" ) %></div></h2>
     <% end %>
   </div>
   <div class="d-none" data-toggle-visible-target="form">
-        <%= render "form", list: @list%>
+        <%= render "lists/form", list: @list%>
     </div>
     <div id="card-container" >
     <% if user_signed_in? %>
@@ -22,6 +22,7 @@
             <div id="card-movie"style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(list.background_image.key,
               width: 400, height: 300, crop: :fill) %>')">
               <p id="title"><%= list.name %></p>
+              <button>hola</button>
             </div>
             <% else %>
               <div id="card-movie" style= "background-color: gray;">

@@ -18,7 +18,7 @@
       <% if @list.user == current_user %>
         <p class="fs-3">My bookmarks</p>
       <% else %>
-        <p class="fs-3">The bookmarks from <%= @list.user.email  %></p>
+        <p class="fs-3">The bookmarks from <%= @list.user.username  %></p>
       <% end %>
       <% if @list.user == current_user %>
         <button class="btn fs-5 btn-outline-success" data-action="click->toggle-visible#toggleVisible">Add a movie</button>
@@ -30,15 +30,14 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card d-flex justify-content-between shadow" data-aos="fade-right" >
-                <%= image_tag(bookmark.movie.poster_url, id:"image-from-card") %>
+              <div class="card d-flex  shadow" data-aos="fade-right" >
+                <%= cl_image_tag(bookmark.photo.key, id:"image-from-card") %>
                 <div class="flex-column  card-body">
-                  <div class="text-wrap mb-1 overflow-hidden" id="overflow-hide">
-                    <p class="card-title"><strong><%= bookmark.movie.title %></strong>   <span class="text-secondary"><%= bookmark.movie.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
-                    <p class=" text-secondary" id="show"><%= bookmark.movie.overview %></p>
+                  <div class="text-wrap mb-1 overflow-hidden">
+                    <p class="card-title"><strong><%= bookmark.title %></strong>   <span class="text-secondary"><%= bookmark.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
+                    <p class=" text-secondary"><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
                   </div>
-                  <div class="d-flex justify-content-between overflow-hidden">
-                    <p class=""><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
+                  <div class="d-flex justify-content-end overflow-hidden">
                     <% if policy(bookmark).destroy? %>
                     <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
                     <% end %>
@@ -67,7 +66,7 @@
                   <i class="fa-regular fa-star"></i> <!-- unfilled star for ratings less than or equal to i -->
                 <% end %>
               <% end %>
-              <span class="text-secondary f"><em><%=distance_of_time_in_words(review.created_at, Time.now) %> ago</span> by <%= review.user.email %></em>
+              <span class="text-secondary f"><em><%=distance_of_time_in_words(review.created_at, Time.now) %> ago</span> by <%= review.user.username %></em>
               </p>
             <p class="fw-bold d-flex justify-content-between"><%= review.comment %> <% if policy(review).destroy? %>
                     <%= link_to("delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>

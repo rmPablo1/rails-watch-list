@@ -29,6 +29,6 @@ class BookmarksController < ApplicationController
   private
 
   def set_params
-    params.require(:bookmark).permit(:movie_id, :comment)
+    params.require(:bookmark).permit(:title, :rating, :comment, :photo)
   end
 end

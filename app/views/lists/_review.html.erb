@@ -1,0 +1,3 @@
+<p class="fw-bold d-flex justify-content-between"><%= review.comment %> <% if policy(review).destroy? %>
+                    <%= link_to("delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
+                    <% end %></p>

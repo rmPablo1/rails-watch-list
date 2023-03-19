@@ -1,5 +1,7 @@
 <%= simple_form_for [list, bookmark] do |f| %>
-  <%=f.association :movie%>
+  <%=f.input :title%>
   <%= f.input :comment %>
+  <%= f.input :rating %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>

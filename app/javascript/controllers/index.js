@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AjaxifyJsController from "./ajaxify_js_controller"
+application.register("ajaxify-js", AjaxifyJsController)
+
 import AnimationJsController from "./animation_js_controller"
 application.register("animation-js", AnimationJsController)
 
