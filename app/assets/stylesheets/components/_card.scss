@@ -15,7 +15,10 @@
   width:100%;
 }
 
-
+.card-minimum{
+  max-width: 400px;
+  height: fit-content;
+}
 
 #small-container{
   margin: auto;
@@ -36,7 +39,7 @@
 
 .minimumh{
   min-height: fit-content;
-  
+
 }
 /*
 #card-container-area{

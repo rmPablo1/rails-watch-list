@@ -30,20 +30,21 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card shadow minimumh" data-aos="fade-right" >
+              <div class="card flex-column card-minimum shadow minimumh" data-aos="fade-right" >
                 <%= cl_image_tag(bookmark.photo.key, id:"image-from-card") %>
-                <div class="d-flex justify-content-start card-body">
-                  <div class="text-wrap mb-1 overflow-hidden">
-                    <p class="card-title text-start"><strong><%= bookmark.title %></strong>   <span class="text-secondary"><%= bookmark.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
+                <div class="d-flex  flex-column justify-content-start card-body">
+                  <div class="text-wrap flex-row mb-1 overflow-hidden">
+                    <p class="card-title text-start"><strong><%= bookmark.title %></strong>   <span class="text-secondary"><%= bookmark.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span>
+                      <% if policy(bookmark).destroy? %>
+                      <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="d-flex justify-content-start overflow-hidden">
                     <p class=" text-secondary text-start"><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
                   </div>
-                  <div class="d-flex justify-content-end overflow-hidden">
-                    <% if policy(bookmark).destroy? %>
-                    <%= link_to("delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"ps-5 text-danger text-decoration-none") %>
-                    <% end %>
                 </div>
               </div>
-            </div>
           <% end %>
       <% else  %>
         <p>No bookmark found!</p>
