@@ -30,6 +30,15 @@
 }
 
 #card-container-area{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.minimumh{
+  min-height: fit-content;
+}
+/*
+#card-container-area{
   display:grid;
   grid-template-columns: repeat(2, auto);
   grid-auto-rows:max-content;
@@ -39,11 +48,7 @@
 }
 
 
-#image-from-card{
-  width: 100%;
-  height: 40%;
-  object-fit: cover;
-}
+
 
 @media (max-width: 1300px) {
   #card-container{
@@ -99,4 +104,10 @@
   }
 
 
+}
+*/
+#image-from-card{
+  width: 100%;
+  height: 40%;
+  object-fit: cover;
 }

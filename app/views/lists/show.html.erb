@@ -30,12 +30,12 @@
     <div id="card-container-area">
       <% if !@bookmarks.empty? %>
           <% @bookmarks.each do |bookmark| %>
-              <div class="card d-flex  shadow" data-aos="fade-right" >
+              <div class="card shadow minimumh" data-aos="fade-right" >
                 <%= cl_image_tag(bookmark.photo.key, id:"image-from-card") %>
-                <div class="flex-column  card-body">
+                <div class="d-flex justify-content-start card-body">
                   <div class="text-wrap mb-1 overflow-hidden">
-                    <p class="card-title"><strong><%= bookmark.title %></strong>   <span class="text-secondary"><%= bookmark.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
-                    <p class=" text-secondary"><i class="fa-solid fa-quote-left"></i>  <%= bookmark.comment %></p>
+                    <p class="card-title text-start"><strong><%= bookmark.title %></strong>   <span class="text-secondary"><%= bookmark.rating %></span>  <span class="text-warning"><i class="fa-solid fa-star"></i></span></p>
+                    <p class=" text-secondary text-start"><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
                   </div>
                   <div class="d-flex justify-content-end overflow-hidden">
                     <% if policy(bookmark).destroy? %>
