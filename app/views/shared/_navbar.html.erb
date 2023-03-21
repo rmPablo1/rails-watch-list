@@ -2,7 +2,7 @@
 %>
 <nav class="navbar bg-white bg-body-tertiary sticky-top" id="">
       <form class="container-fluid">
-      <%= image_tag("icon.png", size: "70x70", class:"ms-5 justify-content-start") %>
+      <%= image_tag("branding.png", size: "70x70", class:"ms-5 justify-content-start") %>
         <div class="justify-content-end ">
           <%= link_to("All lists", root_path, class: "btn btn-sm") %>
           <%= link_to("My lists", mylists_path, class: "btn btn-sm") %>
@@ -21,7 +21,7 @@
 <% elsif user_signed_in? && !current_user.photo.attached? %>
   <nav class="navbar bg-white bg-body-tertiary sticky-top" id="">
       <form class="container-fluid">
-      <%= image_tag("icon.png", size: "70x70", class:"ms-5 justify-content-start") %>
+      <%= image_tag("branding.png", size: "70x70", class:"ms-5 justify-content-start") %>
         <div class="justify-content-end ">
           <%= link_to("All lists", root_path, class: "btn btn-sm") %>
           <%= link_to("My lists", mylists_path, class: "btn btn-sm") %>
@@ -34,7 +34,7 @@
 <% else %>
 <nav class="navbar bg-white bg-body-tertiary sticky-top" id="">
       <form class="container-fluid">
-      <%= image_tag("icon.png", size: "70x70", class:"ms-5 justify-content-start") %>
+      <%= image_tag("branding.png", size: "70x70", class:"ms-5 justify-content-start") %>
         <div class="justify-content-end ">
           <%= link_to("All lists", root_path, class: "btn btn-sm") %>
           <%= link_to("My lists", mylists_path, class: "btn btn-sm") %>
